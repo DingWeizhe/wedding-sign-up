@@ -172,21 +172,28 @@
                 formControlName="vegetarians"
                 class="!text-center !text-xl"
               >
-                <mat-option [value]="0"> 不需要，我吃肉 🍖 </mat-option>
-                <mat-option [value]="1" *ngIf="count.value === 1">
-                  我吃素 🌱
-                </mat-option>
-                <ng-container *ngFor="let option of options">
-                  <mat-option
-                    [value]="option"
-                    *ngIf="count.value && option < count.value"
-                  >
-                    {{ option }} 位吃素 🌱
+                <ng-container *ngIf="count.value === 1">
+                  <mat-option [value]="0"> 我要吃肉 🍖 </mat-option>
+                  <mat-option [value]="1"> 我要吃素 🌱 </mat-option>
+                </ng-container>
+
+                <ng-container *ngIf="count.value !== 1">
+                  <mat-option [value]="count.value">
+                    {{ count.value }} 位都吃肉 🍖
+                  </mat-option>
+                  <ng-container *ngFor="let option of options">
+                    <mat-option
+                      [value]="option"
+                      *ngIf="count.value && option < count.value"
+                    >
+                      {{ option }} 位吃素 🌱， {{ count.value - option }} 位吃肉
+                      🍖
+                    </mat-option>
+                  </ng-container>
+                  <mat-option [value]="count.value">
+                    {{ count.value }} 位都吃素 🌱
                   </mat-option>
                 </ng-container>
-                <mat-option [value]="count.value" *ngIf="count.value !== 1">
-                  全部都吃素 🌱
-                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -205,7 +212,7 @@
                   不需要，節能減碳愛地球 🌏
                 </mat-option>
                 <mat-option [value]="true">
-                  我要，實體喜帖才有溫度、味道 💌
+                  我要，實體喜帖才有溫度、味道 👃
                 </mat-option>
               </mat-select>
             </mat-form-field>

@@ -1,8 +1,8 @@
 <img
   width="171px"
   [@grow]="{ value: status, params: { rotate: 5 } }"
-  style="right: -20px; bottom: 120px; transform-origin: -100px 300px"
-  class="absolute transition-all"
+  style="right: -20px; bottom: 20%; transform-origin: -100px 300px"
+  class="absolute transition-all hidden xs-h:inline-block"
   src="./assets/plant-9.png"
   alt=""
 />
@@ -19,7 +19,7 @@
   width="109px"
   [@grow]="{ value: status, params: { rotate: -5 } }"
   style="left: -30px; top: 40%; transform-origin: -100px 300px"
-  class="absolute transition-all"
+  class="absolute transition-all hidden xs-h:block"
   src="./assets/plant-7.png"
   alt=""
 />
@@ -75,7 +75,7 @@
 <img
   width="38px"
   [@grow]="{ value: status, params: { rotate: -3 } }"
-  style="left: 80px; top: 110px; transform-origin: -100px 300px"
+  style="left: 60px; top: 110px; transform-origin: -100px 300px"
   class="absolute transition-all"
   src="./assets/apple.png"
 />
@@ -83,7 +83,7 @@
 <img
   width="98px"
   [@grow]="{ value: status, params: { rotate: -10, delay: 0.5 } }"
-  style="left: -30px; bottom: 12%; transform-origin: -100px 300px"
+  style="left: -30px; bottom: 15%; transform-origin: -100px 300px"
   class="absolute transition-all"
   src="./assets/bird.png"
 />
@@ -106,11 +106,20 @@
   >
     兩姓聯姻 佳偶天成
   </div>
+
+  <div>
+    <div
+      [@grow]="status"
+      class="text-center mt-12 text-xl px-4 py-2 text-red text-shadow-light bg-white/60 inline-block rounded-lg"
+    >
+      丁偉哲 ♥ 鄭禹辰
+    </div>
+  </div>
 </div>
 
-<div class="absolute top-[50%] w-full left-0 translate-y-[-50%]">
+<div class="absolute top-[46%] w-full left-0 translate-y-[-50%]">
   <div class="flex-row space-x-12 text-center">
-    <div
+    <!-- <div
       [@grow]="status"
       class="relative inline-block ring-1 ring-red/70 shadow-lg p-1 rounded-lg bg-white/30 writing-mode-vertical"
     >
@@ -119,7 +128,7 @@
       >
         一世良緣同地久
       </div>
-    </div>
+    </div> -->
 
     <div class="relative inline-block pt-0">
       <div
@@ -131,13 +140,13 @@
 
       <div
         [@grow]="status"
-        class="relative inline-block mt-6 ring-2 ring-offset-1 ring-red/90 p-1 px-4 rounded-xl text-white bg-red tracking-widest"
+        class="relative inline-block mt-12 ring-2 ring-offset-1 ring-red/90 p-1 px-4 rounded-xl text-white bg-red tracking-widest"
       >
         9 月 24 日 晚宴
       </div>
     </div>
 
-    <div
+    <!-- <div
       class="relative inline-block ring-1 ring-red/70 shadow-lg p-1 rounded-lg bg-white/30 writing-mode-vertical"
     >
       <div
@@ -146,10 +155,7 @@
       >
         百年佳偶共天長
       </div>
-    </div>
-  </div>
-  <div [@grow]="status" class="text-center mt-8 text-red text-shadow-light">
-    丁偉哲 ♥ 鄭禹辰
+    </div> -->
   </div>
 </div>
 
@@ -164,7 +170,7 @@
       mat-raised-button
       color="primary"
     >
-      報名參加
+      敬 邀 參 加
     </button>
   </div>
 </div>
