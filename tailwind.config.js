@@ -8,7 +8,7 @@ module.exports = {
       screens: {
         xs: "391px",
         sm: "460px",
-        "xs-h": { raw: "(min-height: 650px)" },
+        "xs-h": { raw: "(min-height: 750px)" },
       },
       colors: {
         red: "#9E3025",
