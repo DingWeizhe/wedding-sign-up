@@ -31,6 +31,7 @@ export class FormComponent implements AfterContentInit {
   public weddingCake = new FormControl(true);
   public phone = new FormControl('');
   public email = new FormControl('');
+  public ceremony = new FormControl(false);
 
   public form = new FormGroup<SignUpFormGroup>({
     name: this.name,
@@ -44,6 +45,7 @@ export class FormComponent implements AfterContentInit {
     letter: this.letter,
     blessing: this.blessing,
     wedding_cake: this.weddingCake,
+    ceremony: this.ceremony,
   });
 
   public constructor(
@@ -54,6 +56,10 @@ export class FormComponent implements AfterContentInit {
   public ngAfterContentInit(): void {
     this.form.valueChanges.subscribe((value) => {
       this.status++;
+    });
+
+    this.attend.valueChanges.subscribe((attend) => {
+      if (!attend) this.ceremony.setValue(false);
     });
 
     this.letter.valueChanges.subscribe((letter) => {
@@ -118,4 +124,5 @@ type SignUpFormGroup = {
   address?: FormControl<string | null>;
   blessing: FormControl<string | null>;
   wedding_cake: FormControl<boolean | null>;
+  ceremony: FormControl<boolean | null>;
 };

@@ -94,27 +94,38 @@
         </div>
 
         <div class="row overflow-hidden mb-2">
-          <mat-form-field
-            floatLabel="always"
-            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0 overflow-hidden"
+          <div
+            class="relative bg-white/95 rounded-lg px-2 pt-2 pb-2 overflow-hidden"
           >
-            <mat-label>是否出席</mat-label>
+            <mat-form-field floatLabel="always" class="w-full">
+              <mat-label>是否出席</mat-label>
 
-            <input matInput formControlName="gender" class="hidden" />
+              <input matInput formControlName="gender" class="hidden" />
 
-            <mat-radio-group
-              class="flex flex-row w-full content-between m-0 p-4"
-              color="primary"
-              formControlName="attend"
-            >
-              <div class="flex-1 text-center text-xl">
-                <mat-radio-button [value]="true"> 出席 👌 </mat-radio-button>
-              </div>
-              <div class="flex-1 text-center text-xl">
-                <mat-radio-button [value]="false"> 無法 😭 </mat-radio-button>
-              </div>
-            </mat-radio-group>
-          </mat-form-field>
+              <mat-radio-group
+                class="flex flex-row w-full content-between m-0 p-4"
+                color="primary"
+                formControlName="attend"
+              >
+                <div class="flex-1 text-center text-xl">
+                  <mat-radio-button [value]="true"> 出席 👌 </mat-radio-button>
+                </div>
+                <div class="flex-1 text-center text-xl">
+                  <mat-radio-button [value]="false"> 無法 😭 </mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </mat-form-field>
+
+            <div class="text-center">
+              <mat-checkbox
+                color="primary"
+                formControlName="ceremony"
+                [disabled]="attend.value == false"
+              >
+                我要參加證婚儀式
+              </mat-checkbox>
+            </div>
+          </div>
         </div>
 
         <div class="row overflow-hidden mb-2">
