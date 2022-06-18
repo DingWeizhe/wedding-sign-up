@@ -15,7 +15,7 @@ export const fadeInChild = trigger('fadeInChild', [
         style({
           opacity: 0,
           height: 0,
-          marginBottom: 0,
+          marginTop: 0,
         }),
         stagger(10, [
           animate(
@@ -23,7 +23,7 @@ export const fadeInChild = trigger('fadeInChild', [
             style({
               opacity: 1,
               height: '*',
-              marginBottom: '*',
+              marginTop: '*',
             })
           ),
         ]),
@@ -42,7 +42,7 @@ export const fadeInChild = trigger('fadeInChild', [
             style({
               opacity: 0,
               height: 0,
-              marginBottom: 0,
+              marginTop: 0,
             })
           ),
         ]),

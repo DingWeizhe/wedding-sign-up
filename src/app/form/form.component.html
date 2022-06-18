@@ -1,4 +1,4 @@
-<div class="flex-col space-y-4 h-full overflow-auto p-4">
+<div class="flex-col h-full overflow-auto p-2 sm:p-6">
   <img
     width="139px"
     [@grow]="{ value: status, params: { rotate: 5, delay: 0.1, opacity: 0.5 } }"
@@ -46,7 +46,7 @@
     <img
       [@fadeIn]="status"
       src="./assets/cover.png"
-      class="relative mb-4 shadow rounded-lg"
+      class="relative mt-4 shadow rounded-lg"
     />
 
     <form
@@ -57,7 +57,7 @@
     >
       <!-- 必須要動態產生的 dom 才會運行 query animation -->
       <ng-container *ngIf="status">
-        <div class="row mb-4">
+        <div class="row mt-4">
           <div
             class="bg-white/95 relative p-2 shadow rounded-xl text-sm leading-8"
           >
@@ -87,7 +87,7 @@
           </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="row mt-4">
           <mat-form-field
             floatLabel="always"
             class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -101,7 +101,7 @@
           </mat-form-field>
         </div>
 
-        <div class="row mb-2">
+        <div class="row mt-4">
           <mat-form-field
             floatLabel="always"
             class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0 overflow-hidden"
@@ -125,7 +125,7 @@
           </mat-form-field>
         </div>
 
-        <div *ngIf="gender.value === 'FEMALE'" class="row mb-2">
+        <div *ngIf="gender.value === 'FEMALE'" class="row mt-4">
           <mat-form-field
             floatLabel="always"
             class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -141,7 +141,7 @@
           </mat-form-field>
         </div>
 
-        <div class="row mb-2">
+        <div class="row mt-4">
           <div
             class="relative bg-white/95 shadow rounded-lg px-2 pt-2 pb-2 overflow-hidden"
           >
@@ -185,7 +185,7 @@
         </div>
 
         <ng-container *ngIf="attend.value || weddingCake.value">
-          <div class="row mb-2">
+          <div class="row mt-4">
             <mat-form-field
               floatLabel="always"
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -201,7 +201,7 @@
           </div>
         </ng-container>
 
-        <div class="row mb-2">
+        <div class="row mt-4">
           <mat-form-field
             floatLabel="always"
             class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -217,7 +217,7 @@
         </div>
 
         <ng-container *ngIf="attend.value">
-          <div class="row mb-2">
+          <div class="row mt-4">
             <mat-form-field
               floatLabel="always"
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -238,7 +238,7 @@
             </mat-form-field>
           </div>
 
-          <div *ngIf="count.value && count.value > 1" class="row mb-2">
+          <div *ngIf="count.value && count.value > 1" class="row mt-4">
             <mat-form-field
               floatLabel="always"
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -261,7 +261,7 @@
             </mat-form-field>
           </div>
 
-          <div class="row mb-2">
+          <div class="row mt-4">
             <mat-form-field
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
               floatLabel="always"
@@ -297,7 +297,7 @@
             </mat-form-field>
           </div>
 
-          <div class="row mb-2">
+          <div class="row mt-4">
             <mat-form-field
               floatLabel="always"
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -317,7 +317,7 @@
             </mat-form-field>
           </div>
 
-          <div *ngIf="letter.value" class="row overflow-hidden mb-2">
+          <div *ngIf="letter.value" class="row overflow-hidden mt-4">
             <mat-form-field
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
               floatLabel="always"
@@ -334,7 +334,7 @@
           </div>
         </ng-container>
 
-        <div class="row mb-2">
+        <div class="row mt-4">
           <mat-form-field
             floatLabel="always"
             class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-2"
