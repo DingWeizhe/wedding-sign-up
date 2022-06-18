@@ -1,0 +1,19 @@
+<div class="h-full flex flex-row justify-center items-center">
+  <div class="text-center leading-8 flex-1">
+    <div class="text-lg">感謝您的報名<br />期待 9 月 24 日與您相會</div>
+    <br />
+    <div class="text-center">
+      <a [href]="url$ | async">
+        <div
+          #qrCode
+          class="inline-block ring-2 ring-line bg-white rounded-lg cursor-pointer"
+        ></div>
+      </a>
+    </div>
+    <br />
+    <span class="text-gray-500 text-xs">
+      掃描 / 點擊上方 QR Code 加入 LINE 官方賬號。<br />
+      我們會在喜宴前一天通知您，並提供交通資訊。
+    </span>
+  </div>
+</div>

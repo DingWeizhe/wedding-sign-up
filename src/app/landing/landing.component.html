@@ -1,0 +1,171 @@
+<img
+  width="171px"
+  [@grow]="{ value: status, params: { rotate: 5 } }"
+  style="right: -20px; bottom: 120px; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/plant-9.png"
+  alt=""
+/>
+
+<img
+  width="98px"
+  [@grow]="{ value: status, params: { rotate: 5 } }"
+  style="right: 80px; top: 0px; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/plant-8.png"
+/>
+
+<img
+  width="109px"
+  [@grow]="{ value: status, params: { rotate: -5 } }"
+  style="left: -30px; top: 40%; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/plant-7.png"
+  alt=""
+/>
+
+<img
+  [@grow]="{ value: status, params: { rotate: -5 } }"
+  style="transform-origin: -100px 300px"
+  class="absolute transition-all w-[80px] bottom-[-50px] left-[40%] translate-x-[-50%] xs:w-[100px] xs:bottom-[-50px] sm:w-[146px] sm:bottom-[-120px]"
+  src="/assets/plant-6.png"
+  alt=""
+/>
+
+<img
+  width="139px"
+  [@grow]="{ value: status, params: { rotate: 5, delay: 0.1 } }"
+  style="right: -20px; top: -60px; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/plant-5.png"
+  alt=""
+/>
+
+<img
+  width="189px"
+  [@grow]="{ value: status, params: { rotate: -5, delay: 0.6 } }"
+  style="left: 60px; top: 50px; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/plant-4.png"
+/>
+
+<img
+  width="138px"
+  [@grow]="{ value: status, params: { rotate: -5, delay: 0.3 } }"
+  style="left: -20px; top: 5%; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/plant-3.png"
+/>
+
+<img
+  width="220px"
+  [@grow]="{ value: status, params: { rotate: 5, delay: 0.2 } }"
+  style="right: -50px; top: 30%; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/plant-2.png"
+  alt=""
+/>
+
+<img
+  [@grow]="{ value: status, params: { rotate: -5 } }"
+  style="transform-origin: -100px 300px"
+  class="absolute transition-all w-[140px] left-[-30px] bottom-[-100px] sm:w-[159px] sm:left-[-30px] sm:bottom-[-120px]"
+  src="/assets/plant-1.png"
+/>
+
+<img
+  width="38px"
+  [@grow]="{ value: status, params: { rotate: -3 } }"
+  style="left: 80px; top: 110px; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/apple.png"
+/>
+
+<img
+  width="98px"
+  [@grow]="{ value: status, params: { rotate: -10, delay: 0.5 } }"
+  style="left: -30px; bottom: 12%; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/bird.png"
+/>
+
+<img
+  width="203px"
+  [@grow]="{ value: status, params: { rotate: 5, delay: 0.3 } }"
+  style="right: -20px; bottom: 0px; transform-origin: -100px 300px"
+  class="absolute transition-all"
+  src="/assets/524.png"
+/>
+
+<div class="relative text-center mt-8" [@grow]="status">
+  <div
+    class="absolute inline-block shadow-xl p-0.5 ml-4 w-[12em] h-[2.5rem] bg-red ring-2 ring-offset-2 ring-red rounded-xl"
+  ></div>
+
+  <div
+    class="relative z-10 inline-block px-4 mt-1.5 text-xl bg-red text-white ring-2 ring-offset-2 ring-red rounded-xl"
+  >
+    兩姓聯姻 佳偶天成
+  </div>
+</div>
+
+<div class="absolute top-[50%] w-full left-0 translate-y-[-50%]">
+  <div class="flex-row space-x-12 text-center">
+    <div
+      [@grow]="status"
+      class="relative inline-block ring-1 ring-red/70 shadow-lg p-1 rounded-lg bg-white/30 writing-mode-vertical"
+    >
+      <div
+        class="relative inline-block ring-2 ring-red/90 py-2 rounded writing-mode-vertical bg-white text-red tracking-widest"
+      >
+        一世良緣同地久
+      </div>
+    </div>
+
+    <div class="relative inline-block pt-0">
+      <div
+        [@grow]="status"
+        class="text-red text-9xl text-centeralign-top text-shadow-light"
+      >
+        囍
+      </div>
+
+      <div
+        [@grow]="status"
+        class="relative inline-block mt-6 ring-2 ring-offset-1 ring-red/90 p-1 px-4 rounded-xl text-white bg-red tracking-widest"
+      >
+        9 月 24 日 晚宴
+      </div>
+    </div>
+
+    <div
+      class="relative inline-block ring-1 ring-red/70 shadow-lg p-1 rounded-lg bg-white/30 writing-mode-vertical"
+    >
+      <div
+        [@grow]="status"
+        class="relative inline-block ring-2 ring-red/90 py-2 rounded writing-mode-vertical bg-white text-red tracking-widest"
+      >
+        百年佳偶共天長
+      </div>
+    </div>
+  </div>
+  <div [@grow]="status" class="text-center mt-8 text-red text-shadow-light">
+    丁偉哲 ♥ 鄭禹辰
+  </div>
+</div>
+
+<div class="absolute bottom-[15%] w-full left-0 text-center">
+  <div
+    [@grow]="status"
+    class="rounded-full ring-2 ring-offset-2 ring-red inline-block"
+  >
+    <button
+      (click)="info()"
+      class="!rounded-full !text-3xl !p-4 !px-8 shadow transition-all text-white bg-red sm:p-1 sm:px-4 cursor-pointer"
+      mat-raised-button
+      color="primary"
+    >
+      報名參加
+    </button>
+  </div>
+</div>

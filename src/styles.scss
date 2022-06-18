@@ -1,0 +1,65 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$red: (
+  50: #f4e9e8,
+  100: #e4c8c5,
+  200: #d2a49e,
+  300: #c08077,
+  400: #b3645a,
+  500: #a5493d,
+  600: #9d4237,
+  700: #93392f,
+  800: #8a3127,
+  900: #79211a,
+  A100: #ffb7b3,
+  A200: #ff8880,
+  A400: #ff584d,
+  A700: #ff4033,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
+  ),
+);
+
+$my-primary: mat.define-palette($red, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($my-theme);

@@ -1,0 +1,285 @@
+<div class="flex-col space-y-4 h-full overflow-auto p-4">
+  <img
+    width="139px"
+    [@grow]="{ value: status, params: { rotate: 5, delay: 0.1, opacity: 0.5 } }"
+    style="right: -20px; top: -60px; transform-origin: -100px 300px"
+    class="absolute transition-all"
+    src="/assets/plant-5.png"
+    alt=""
+  />
+
+  <img
+    width="138px"
+    [@grow]="{
+      value: status,
+      params: { rotate: -5, delay: 0, opacity: 0.5 }
+    }"
+    style="left: -20px; top: 5%; transform-origin: -100px 300px"
+    class="absolute transition-all"
+    src="/assets/plant-3.png"
+  />
+
+  <img
+    width="220px"
+    [@grow]="{ value: status, params: { rotate: 5, delay: 0.2, opacity: 0.5 } }"
+    style="right: -50px; top: 30%; transform-origin: -100px 300px"
+    class="absolute transition-all"
+    src="/assets/plant-2.png"
+    alt=""
+  />
+
+  <img
+    [@grow]="{ value: status, params: { rotate: -5, opacity: 0.5 } }"
+    style="transform-origin: -100px 300px"
+    class="absolute transition-all w-[140px] left-[-30px] bottom-[-100px] sm:w-[159px] sm:left-[-30px] sm:bottom-[-120px]"
+    src="/assets/plant-1.png"
+  />
+
+  <img
+    width="203px"
+    [@grow]="{ value: status, params: { rotate: 5, delay: 0.3, opacity: 0.5 } }"
+    style="right: -20px; bottom: 0px; transform-origin: -100px 300px"
+    class="absolute transition-all"
+    src="/assets/524.png"
+  />
+
+  <div>
+    <form
+      [formGroup]="form"
+      class="flex-col"
+      [@fadeInChild]="status"
+      (submit)="submit()"
+    >
+      <!-- 必須要動態產生的 dom 才會運行 query animation -->
+      <ng-container *ngIf="status">
+        <div class="row overflow-hidden text-red text-2xl text-center mb-2">
+          報名表
+        </div>
+
+        <div class="row overflow-hidden mb-2">
+          <mat-form-field
+            floatLabel="always"
+            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+          >
+            <mat-label>姓名</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              class="!text-center !text-xl"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="row overflow-hidden mb-2">
+          <mat-form-field
+            floatLabel="always"
+            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0 overflow-hidden"
+          >
+            <mat-label>男/女親友</mat-label>
+
+            <input matInput formControlName="gender" class="hidden" />
+
+            <mat-radio-group
+              color="primary"
+              class="flex flex-row w-full content-between m-0 p-4 overflow-hidden"
+              formControlName="gender"
+            >
+              <div class="flex-1 text-center text-xl">
+                <mat-radio-button value="MALE"> 🤵‍♂️ 男方 </mat-radio-button>
+              </div>
+              <div class="flex-1 text-center text-xl">
+                <mat-radio-button value="FEMALE"> 👰‍♀️ 女方 </mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </mat-form-field>
+        </div>
+
+        <div class="row overflow-hidden mb-2">
+          <mat-form-field
+            floatLabel="always"
+            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0 overflow-hidden"
+          >
+            <mat-label>是否出席</mat-label>
+
+            <input matInput formControlName="gender" class="hidden" />
+
+            <mat-radio-group
+              class="flex flex-row w-full content-between m-0 p-4"
+              color="primary"
+              formControlName="attend"
+            >
+              <div class="flex-1 text-center text-xl">
+                <mat-radio-button [value]="true"> 出席 👌 </mat-radio-button>
+              </div>
+              <div class="flex-1 text-center text-xl">
+                <mat-radio-button [value]="false"> 無法 😭 </mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </mat-form-field>
+        </div>
+
+        <ng-container *ngIf="attend.value">
+          <div class="row overflow-hidden mb-2">
+            <mat-form-field
+              floatLabel="always"
+              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+            >
+              <mat-label>參與人數</mat-label>
+              <mat-select class="!text-center !text-xl" formControlName="count">
+                <mat-option [value]="1"> 1 位 </mat-option>
+                <mat-option [value]="2"> 2 位 </mat-option>
+                <mat-option [value]="3"> 3 位 </mat-option>
+                <mat-option [value]="4"> 4 位 </mat-option>
+                <mat-option [value]="5"> 5 位 </mat-option>
+                <mat-option [value]="6"> 6 位 </mat-option>
+                <mat-option [value]="7"> 7 位 </mat-option>
+                <mat-option [value]="8"> 8 位 </mat-option>
+                <mat-option [value]="9"> 9 位 </mat-option>
+                <mat-option [value]="10"> 10 位 </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="count.value && count.value > 1" class="row mb-2">
+            <mat-form-field
+              floatLabel="always"
+              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+            >
+              <mat-label>是否需要兒童座椅？</mat-label>
+              <mat-select
+                class="!text-center !text-xl"
+                formControlName="child_seat"
+              >
+                <mat-option [value]="0"> 不需要 </mat-option>
+                <ng-container *ngFor="let option of options">
+                  <mat-option
+                    [value]="option"
+                    *ngIf="count.value && option < count.value"
+                  >
+                    {{ option }} 張 🍼
+                  </mat-option>
+                </ng-container>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row overflow-hidden mb-2">
+            <mat-form-field
+              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+              floatLabel="always"
+            >
+              <mat-label>請問是否吃素？</mat-label>
+              <mat-select
+                formControlName="vegetarians"
+                class="!text-center !text-xl"
+              >
+                <mat-option [value]="0"> 不需要，我吃肉 🍖 </mat-option>
+                <mat-option [value]="1" *ngIf="count.value === 1">
+                  我吃素 🌱
+                </mat-option>
+                <ng-container *ngFor="let option of options">
+                  <mat-option
+                    [value]="option"
+                    *ngIf="count.value && option < count.value"
+                  >
+                    {{ option }} 位吃素 🌱
+                  </mat-option>
+                </ng-container>
+                <mat-option [value]="count.value" *ngIf="count.value !== 1">
+                  全部都吃素 🌱
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row overflow-hidden mb-2">
+            <mat-form-field
+              floatLabel="always"
+              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+            >
+              <mat-label>是否需要紙本喜帖？</mat-label>
+              <mat-select
+                class="!text-center !text-xl"
+                formControlName="letter"
+              >
+                <mat-option [value]="false">
+                  不需要，節能減碳愛地球 🌏
+                </mat-option>
+                <mat-option [value]="true">
+                  我要，實體喜帖才有溫度、味道 💌
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="letter.value" class="row overflow-hidden mb-2">
+            <mat-form-field
+              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+              floatLabel="always"
+            >
+              <mat-label>喜帖寄送地址？</mat-label>
+              <textarea
+                type="address"
+                formControlName="address"
+                matInput
+                rows="3"
+              >
+              </textarea>
+            </mat-form-field>
+          </div>
+
+          <div
+            *ngIf="gender.value === 'FEMALE'"
+            class="row overflow-hidden mb-2"
+          >
+            <mat-form-field
+              floatLabel="always"
+              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+            >
+              <mat-label>是否需要喜餅？</mat-label>
+              <mat-select
+                class="!text-center !text-xl"
+                formControlName="wedding_cake"
+              >
+                <mat-option [value]="true"> 要！ 好吃的喜餅🤤 </mat-option>
+                <mat-option [value]="false"> 不用，我在減肥🥲 </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+
+        <div class="row overflow-hidden mb-2">
+          <mat-form-field
+            floatLabel="always"
+            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-2"
+          >
+            <mat-label>祝福的話</mat-label>
+            <textarea matInput rows="5" formControlName="blessing"></textarea>
+            <mat-hint class="text-xs !text-gray-500/80">
+              當天可能會呈現在會場中
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="row text-center overflow-hidden !my-8">
+          <div class="w-full text-center !my-12">
+            <div
+              class="rounded-full ring-2 ring-offset-2 ring-red inline-block"
+              [ngClass]="{ 'ring-gray-50/30': form.invalid }"
+            >
+              <button
+                mat-raised-button
+                type="submit"
+                class="!rounded-full !text-3xl !p-4 !px-8 shadow transition-all text-white bg-red sm:p-1 sm:px-4 cursor-pointer"
+                color="primary"
+                [disabled]="form.invalid || form.disabled"
+              >
+                確定送出
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </form>
+  </div>
+</div>
