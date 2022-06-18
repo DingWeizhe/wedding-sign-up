@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import QRCodeStyling from 'qr-code-styling';
-import { filter, map } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-success',
@@ -12,14 +12,13 @@ export class SuccessComponent implements AfterViewInit {
   public qrCodeDom!: ElementRef<HTMLDivElement>;
 
   private readonly _signUpId$ = this._activatedRoute.queryParamMap.pipe(
-    map((paramMap) => paramMap.get('signUpId')),
-    filter(Boolean)
+    map((paramMap) => paramMap.get('signUpId'))
   );
 
   public readonly url$ = this._signUpId$.pipe(
     map((signUpId) => {
-      const url = new URL('https://3971.api.gosu.bar/customize/redirect');
-      url.searchParams.append('signUpId', signUpId);
+      const url = new URL('https://liff.line.me/1657230630-R44dzmb0');
+      if (signUpId) url.searchParams.append('signUpId', signUpId);
       return url.toString();
     })
   );
