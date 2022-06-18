@@ -27,9 +27,9 @@ export class AppComponent implements AfterViewInit {
 
   @HostListener('window:resize')
   public onWindowsResize() {
-    const height = window.visualViewport?.height ?? window.innerHeight;
-    this.container.nativeElement.style.height = height + 'px';
+    let height = window.visualViewport?.height ?? window.innerHeight;
     this.bg.nativeElement.style.height = height + 'px';
+    this.container.nativeElement.style.height = height + 'px';
     this.inner.nativeElement.style.height = height - 20 + 'px';
   }
 }
