@@ -29,10 +29,14 @@ export class FormComponent implements AfterContentInit {
   public letter = new FormControl(false);
   public blessing = new FormControl('', []);
   public weddingCake = new FormControl(true);
+  public phone = new FormControl('');
+  public email = new FormControl('');
 
   public form = new FormGroup<SignUpFormGroup>({
     name: this.name,
     gender: this.gender,
+    phone: this.phone,
+    email: this.email,
     attend: this.attend,
     count: this.count,
     child_seat: this.childSeat,
@@ -104,6 +108,8 @@ type CreateWeddingSignUpResponse = {
 type SignUpFormGroup = {
   name: FormControl<string | null>;
   gender: FormControl<'' | 'MALE' | 'FEMALE' | null>;
+  phone: FormControl<string | null>;
+  email: FormControl<string | null>;
   attend: FormControl<boolean | null>;
   count: FormControl<number | null>;
   child_seat: FormControl<number | null>;
