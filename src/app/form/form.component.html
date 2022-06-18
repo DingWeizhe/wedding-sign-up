@@ -43,6 +43,12 @@
   />
 
   <div>
+    <img
+      [@fadeIn]="status"
+      src="./assets/cover.png"
+      class="relative mb-4 shadow rounded-lg"
+    />
+
     <form
       [formGroup]="form"
       class="flex-col"
@@ -51,14 +57,40 @@
     >
       <!-- 必須要動態產生的 dom 才會運行 query animation -->
       <ng-container *ngIf="status">
-        <div class="row overflow-hidden text-red text-2xl text-center mb-2">
-          報名表
+        <div class="row mb-4">
+          <div
+            class="bg-white/95 relative p-2 shadow rounded-xl text-sm leading-8"
+          >
+            嗨！ 各位親愛的好朋友們： <br />我們將於
+            <div class="flex-col inline-block align-middle text-sm px-2">
+              <div>國曆 9 月 24 日</div>
+              <div>農曆 8 月 29 日</div>
+            </div>
+            (星期六) 晚上 6:00 於<br />
+            青青格麗絲莊園 舉行喜宴，<br />誠摯地邀請您一起前來參與我們的婚禮！<br /><br />
+            日期： 2022 年 9 月 24日 (星期六) <br />
+            時間：
+            <div class="inline-block align-top">
+              17:00 證婚儀式<br />
+              18:00 準時開席
+            </div>
+            <br />
+            地點：<a
+              class="underline underline-offset-2"
+              target="_new"
+              href="https://goo.gl/maps/CDTBvkcWNDoe2mkJA"
+            >
+              青青格麗絲莊園 桃園市蘆竹區南崁路46號
+            </a>
+            <br /><br />
+            <div class="text-right">偉哲 & 禹辰 敬邀</div>
+          </div>
         </div>
 
-        <div class="row overflow-hidden mb-2">
+        <div class="row mb-2">
           <mat-form-field
             floatLabel="always"
-            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+            class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
           >
             <mat-label>姓名</mat-label>
             <input
@@ -69,10 +101,10 @@
           </mat-form-field>
         </div>
 
-        <div class="row overflow-hidden mb-2">
+        <div class="row mb-2">
           <mat-form-field
             floatLabel="always"
-            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0 overflow-hidden"
+            class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0 overflow-hidden"
           >
             <mat-label>男/女親友</mat-label>
 
@@ -80,7 +112,7 @@
 
             <mat-radio-group
               color="primary"
-              class="flex flex-row w-full content-between m-0 p-4 overflow-hidden"
+              class="flex flex-row w-full content-between m-0 p-4"
               formControlName="gender"
             >
               <div class="flex-1 text-center text-xl">
@@ -93,9 +125,25 @@
           </mat-form-field>
         </div>
 
-        <div class="row overflow-hidden mb-2">
+        <div *ngIf="gender.value === 'FEMALE'" class="row mb-2">
+          <mat-form-field
+            floatLabel="always"
+            class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
+          >
+            <mat-label>是否需要喜餅？</mat-label>
+            <mat-select
+              class="!text-center !text-xl"
+              formControlName="wedding_cake"
+            >
+              <mat-option [value]="true"> 要！ 好吃的喜餅🤤 </mat-option>
+              <mat-option [value]="false"> 不用，我在減肥🥲 </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row mb-2">
           <div
-            class="relative bg-white/95 rounded-lg px-2 pt-2 pb-2 overflow-hidden"
+            class="relative bg-white/95 shadow rounded-lg px-2 pt-2 pb-2 overflow-hidden"
           >
             <mat-form-field floatLabel="always" class="w-full">
               <mat-label>是否出席</mat-label>
@@ -122,31 +170,41 @@
                 formControlName="ceremony"
                 [disabled]="attend.value == false"
               >
-                我要參加證婚儀式
+                我要參加 17:00 的
               </mat-checkbox>
+              <span
+                class="underline underline-offset-2"
+                matTooltip="下午 5:00 開始，在戶外進行，有雞尾酒、小點心。"
+                #tooltip="matTooltip"
+                (click)="tooltip.toggle()"
+              >
+                證婚儀式
+              </span>
             </div>
           </div>
         </div>
 
-        <div class="row overflow-hidden mb-2">
-          <mat-form-field
-            floatLabel="always"
-            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
-          >
-            <mat-label>電話</mat-label>
-            <input
-              matInput
-              type="tel"
-              formControlName="phone"
-              class="!text-center !text-xl"
-            />
-          </mat-form-field>
-        </div>
+        <ng-container *ngIf="attend.value || weddingCake.value">
+          <div class="row mb-2">
+            <mat-form-field
+              floatLabel="always"
+              class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
+            >
+              <mat-label>電話</mat-label>
+              <input
+                matInput
+                type="tel"
+                formControlName="phone"
+                class="!text-center !text-xl"
+              />
+            </mat-form-field>
+          </div>
+        </ng-container>
 
-        <div class="row overflow-hidden mb-2">
+        <div class="row mb-2">
           <mat-form-field
             floatLabel="always"
-            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+            class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
           >
             <mat-label>電子郵件</mat-label>
             <input
@@ -159,10 +217,10 @@
         </div>
 
         <ng-container *ngIf="attend.value">
-          <div class="row overflow-hidden mb-2">
+          <div class="row mb-2">
             <mat-form-field
               floatLabel="always"
-              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+              class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
             >
               <mat-label>參與人數</mat-label>
               <mat-select class="!text-center !text-xl" formControlName="count">
@@ -183,7 +241,7 @@
           <div *ngIf="count.value && count.value > 1" class="row mb-2">
             <mat-form-field
               floatLabel="always"
-              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+              class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
             >
               <mat-label>是否需要兒童座椅？</mat-label>
               <mat-select
@@ -203,9 +261,9 @@
             </mat-form-field>
           </div>
 
-          <div class="row overflow-hidden mb-2">
+          <div class="row mb-2">
             <mat-form-field
-              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+              class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
               floatLabel="always"
             >
               <mat-label>請問是否吃素？</mat-label>
@@ -239,10 +297,10 @@
             </mat-form-field>
           </div>
 
-          <div class="row overflow-hidden mb-2">
+          <div class="row mb-2">
             <mat-form-field
               floatLabel="always"
-              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+              class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
             >
               <mat-label>是否需要紙本喜帖？</mat-label>
               <mat-select
@@ -261,7 +319,7 @@
 
           <div *ngIf="letter.value" class="row overflow-hidden mb-2">
             <mat-form-field
-              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
+              class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
               floatLabel="always"
             >
               <mat-label>喜帖寄送地址？</mat-label>
@@ -274,31 +332,12 @@
               </textarea>
             </mat-form-field>
           </div>
-
-          <div
-            *ngIf="gender.value === 'FEMALE'"
-            class="row overflow-hidden mb-2"
-          >
-            <mat-form-field
-              floatLabel="always"
-              class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-0"
-            >
-              <mat-label>是否需要喜餅？</mat-label>
-              <mat-select
-                class="!text-center !text-xl"
-                formControlName="wedding_cake"
-              >
-                <mat-option [value]="true"> 要！ 好吃的喜餅🤤 </mat-option>
-                <mat-option [value]="false"> 不用，我在減肥🥲 </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
         </ng-container>
 
-        <div class="row overflow-hidden mb-2">
+        <div class="row mb-2">
           <mat-form-field
             floatLabel="always"
-            class="w-full bg-white/95 rounded-lg px-2 pt-2 pb-2"
+            class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-2"
           >
             <mat-label>祝福的話</mat-label>
             <textarea matInput rows="5" formControlName="blessing"></textarea>

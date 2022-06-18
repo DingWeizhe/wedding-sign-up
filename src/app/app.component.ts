@@ -18,6 +18,9 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('bg')
   public bg!: ElementRef<HTMLElement>;
 
+  @ViewChild('inner')
+  public inner!: ElementRef<HTMLElement>;
+
   public ngAfterViewInit(): void {
     this.onWindowsResize();
   }
@@ -27,5 +30,6 @@ export class AppComponent implements AfterViewInit {
     const height = window.visualViewport?.height ?? window.innerHeight;
     this.container.nativeElement.style.height = height + 'px';
     this.bg.nativeElement.style.height = height + 'px';
+    this.inner.nativeElement.style.height = height - 20 + 'px';
   }
 }

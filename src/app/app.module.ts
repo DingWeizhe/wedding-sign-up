@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { SuccessComponent } from './success/success.component';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
+    MatTooltipModule,
     MatSelectModule,
     ReactiveFormsModule,
   ],

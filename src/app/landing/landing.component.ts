@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { grow } from '../animation/grow';
 
@@ -7,15 +7,17 @@ import { grow } from '../animation/grow';
   templateUrl: './landing.component.html',
   animations: [grow],
 })
-export class LandingComponent {
+export class LandingComponent implements AfterViewInit {
   public status = 'initial';
 
   public constructor(private readonly _router: Router) {}
 
-  public info() {
+  public ngAfterViewInit(): void {
+    setTimeout(() => this.form(), 5000);
+  }
+
+  public form() {
     this.status = 'exit';
-    setTimeout(() => {
-      this._router.navigateByUrl('/info');
-    }, 1000);
+    setTimeout(() => this._router.navigateByUrl('/form'), 1000);
   }
 }

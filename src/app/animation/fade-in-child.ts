@@ -17,7 +17,7 @@ export const fadeInChild = trigger('fadeInChild', [
           height: 0,
           marginBottom: 0,
         }),
-        stagger(300, [
+        stagger(10, [
           animate(
             '1s ease-out',
             style({
