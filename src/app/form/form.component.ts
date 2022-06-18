@@ -81,13 +81,14 @@ export class FormComponent implements AfterContentInit {
       return;
     }
 
+    const value = this.form.value;
     this.form.disable();
 
     try {
       const response = await firstValueFrom(
         this._httpClient.post<CreateWeddingSignUpResponse>(
           'https://directus.gosu.bar/2074/items/wedding',
-          this.form.value
+          value
         )
       );
 
