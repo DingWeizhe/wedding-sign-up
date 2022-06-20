@@ -7,16 +7,10 @@ import {
 } from '@angular/animations';
 
 export const fadeIn = trigger('fadeIn', [
-  state('initial', style({ transform: 'scale(1)', opacity: 1 })),
+  state('initial', style({ marginTop: '*', opacity: 1 })),
   transition(
     ':enter',
-    [
-      style({
-        transform: 'scale(0.95) translate(0, 30px)',
-        opacity: 0,
-      }),
-      animate('1s {{delay}}s ease-out'),
-    ],
+    [style({ marginTop: 0, opacity: 0 }), animate('1s {{delay}}s ease-out')],
     { params: { delay: 0 } }
   ),
   transition(
