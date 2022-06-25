@@ -36,7 +36,7 @@ export class LandingComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.onWindowsResize();
-    // setTimeout(() => this.form(), 5000);
+    setTimeout(() => this.form(), 5000);
   }
 
   public form() {
