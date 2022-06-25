@@ -8,7 +8,16 @@
 
 html,
 body {
+  background-color: #9e3025;
   height: 100%;
+  overflow: hidden;
+}
+
+app-root {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 body {

@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
-import { InfoComponent } from './info/info.component';
 import { LandingComponent } from './landing/landing.component';
 import { SuccessComponent } from './success/success.component';
 
@@ -37,7 +36,6 @@ import { SuccessComponent } from './success/success.component';
   declarations: [
     AppComponent,
     LandingComponent,
-    InfoComponent,
     FormComponent,
     SuccessComponent,
   ],

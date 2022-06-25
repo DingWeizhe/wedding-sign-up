@@ -1,4 +1,4 @@
-<div class="flex-col h-full overflow-auto p-2 sm:p-6">
+<div class="flex-col h-full p-2 sm:p-6">
   <img
     width="139px"
     [@grow]="{ value: status, params: { rotate: 5, delay: 0.1, opacity: 0.5 } }"
@@ -45,7 +45,7 @@
   <div>
     <img
       [@fadeIn]="status"
-      src="./assets/cover.png"
+      src="./assets/cover.jpg"
       class="relative mt-4 shadow rounded-lg"
     />
 
@@ -61,29 +61,72 @@
           <div
             class="bg-white/95 relative p-2 shadow rounded-xl text-sm leading-8"
           >
-            嗨！ 各位親愛的好朋友們： <br />我們將於
-            <div class="flex-col inline-block align-middle text-sm px-2">
-              <div>國曆 9 月 24 日</div>
-              <div>農曆 8 月 29 日</div>
-            </div>
-            (星期六) 晚上 6:00 於<br />
-            青青格麗絲莊園 舉行喜宴，<br />誠摯地邀請您一起前來參與我們的婚禮！<br /><br />
-            日期： 2022 年 9 月 24日 (星期六) <br />
-            時間：
-            <div class="inline-block align-top">
-              17:00 證婚儀式<br />
-              18:00 準時開席
-            </div>
-            <br />
-            地點：<a
-              class="underline underline-offset-2"
-              target="_new"
-              href="https://goo.gl/maps/CDTBvkcWNDoe2mkJA"
-            >
-              青青格麗絲莊園 桃園市蘆竹區南崁路46號
-            </a>
-            <br /><br />
-            <div class="text-right">偉哲 & 禹辰 敬邀</div>
+            <ng-container *ngIf="isSenior$ | async; else young">
+              嗨！ 各位親朋好友們： <br />我們的
+              <ng-container [ngSwitch]="gender$ | async">
+                <ng-template ngSwitchCase="male">兒子</ng-template>
+                <ng-template ngSwitchCase="female">女兒</ng-template>
+                <ng-template ngSwitchDefault>兒女</ng-template>
+              </ng-container>
+              將於
+              <div class="flex-col inline-block align-middle text-sm px-2">
+                <div>國曆 9 月 24 日</div>
+                <div>農曆 8 月 29 日</div>
+              </div>
+              (星期六) 晚上 6:00 於<br />
+              青青格麗絲莊園 舉行喜宴，<br />誠摯地邀請您一起前來參與我們的婚禮！<br /><br />
+              日期： 2022 年 9 月 24日 (星期六) <br />
+              時間：
+              <div class="inline-block align-top">18:00 準時開席</div>
+              <br />
+              地點：<a
+                class="underline underline-offset-2"
+                target="_new"
+                href="https://goo.gl/maps/CDTBvkcWNDoe2mkJA"
+              >
+                青青格麗絲莊園 桃園市蘆竹區南崁路46號
+              </a>
+              <br /><br />
+              <div class="text-right">
+                <ng-container [ngSwitch]="gender$ | async">
+                  <ng-template ngSwitchCase="male">丁瑞賓 & 林素芬</ng-template>
+                  <ng-template ngSwitchCase="female">
+                    鄭家君 & 藍玉評
+                  </ng-template>
+                  <ng-template ngSwitchDefault>
+                    <div
+                      class="flex-col inline-block align-middle text-sm px-2"
+                    >
+                      <div>丁瑞賓 & 林素芬</div>
+                      <div>鄭家君 & 藍玉評</div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+                敬邀
+              </div>
+            </ng-container>
+
+            <ng-template #young>
+              嗨！ 各位親愛的好朋友們： <br />我們將於 國曆 9 月 24 日 (星期六)
+              晚上 6:00 於<br />
+              青青格麗絲莊園 舉行喜宴，<br />誠摯地邀請您一起前來參與我們的婚禮！<br /><br />
+              日期： 2022 年 9 月 24日 (星期六) <br />
+              時間：
+              <div class="inline-block align-top">
+                17:00 證婚儀式<br />
+                18:00 準時開席
+              </div>
+              <br />
+              地點：<a
+                class="underline underline-offset-2"
+                target="_new"
+                href="https://goo.gl/maps/CDTBvkcWNDoe2mkJA"
+              >
+                青青格麗絲莊園 桃園市蘆竹區南崁路46號
+              </a>
+              <br /><br />
+              <div class="text-right">偉哲 & 禹辰 敬邀</div>
+            </ng-template>
           </div>
         </div>
 
@@ -101,10 +144,10 @@
           </mat-form-field>
         </div>
 
-        <div class="row mt-4">
+        <div class="row mt-4" *ngIf="!(gender$ | async)">
           <mat-form-field
             floatLabel="always"
-            class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0 overflow-hidden"
+            class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
           >
             <mat-label>男/女親友</mat-label>
 
@@ -135,16 +178,21 @@
               class="!text-center !text-xl"
               formControlName="wedding_cake"
             >
-              <mat-option [value]="true"> 要！ 好吃的喜餅🤤 </mat-option>
-              <mat-option [value]="false"> 不用，我在減肥🥲 </mat-option>
+              <ng-container *ngIf="isSenior$ | async; else youngWeddingCake">
+                <mat-option [value]="true"> 要 </mat-option>
+                <mat-option [value]="false"> 不需要 </mat-option>
+              </ng-container>
+
+              <ng-template #youngWeddingCake>
+                <mat-option [value]="true"> 要！ 好吃的喜餅🤤 </mat-option>
+                <mat-option [value]="false"> 不用，我在減肥🥲 </mat-option>
+              </ng-template>
             </mat-select>
           </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <div
-            class="relative bg-white/95 shadow rounded-lg px-2 pt-2 pb-2 overflow-hidden"
-          >
+          <div class="relative bg-white/95 shadow rounded-lg px-2 pt-2 pb-2">
             <mat-form-field floatLabel="always" class="w-full">
               <mat-label>是否出席</mat-label>
 
@@ -155,16 +203,33 @@
                 color="primary"
                 formControlName="attend"
               >
-                <div class="flex-1 text-center text-xl">
-                  <mat-radio-button [value]="true"> 出席 👌 </mat-radio-button>
-                </div>
-                <div class="flex-1 text-center text-xl">
-                  <mat-radio-button [value]="false"> 無法 😭 </mat-radio-button>
-                </div>
+                <ng-container *ngIf="isSenior$ | async; else youngAttend">
+                  <div class="flex-1 text-center text-xl">
+                    <mat-radio-button [value]="true"> 參加 </mat-radio-button>
+                  </div>
+
+                  <div class="flex-1 text-center text-xl">
+                    <mat-radio-button [value]="false">
+                      不克參加
+                    </mat-radio-button>
+                  </div>
+                </ng-container>
+
+                <ng-template #youngAttend>
+                  <div class="flex-1 text-center text-xl">
+                    <mat-radio-button [value]="true">出席 👌 </mat-radio-button>
+                  </div>
+
+                  <div class="flex-1 text-center text-xl">
+                    <mat-radio-button [value]="false">
+                      無法 😭
+                    </mat-radio-button>
+                  </div>
+                </ng-template>
               </mat-radio-group>
             </mat-form-field>
 
-            <div class="text-center">
+            <div class="text-center" *ngIf="!(isSenior$ | async)">
               <mat-checkbox
                 color="primary"
                 formControlName="ceremony"
@@ -190,7 +255,7 @@
               floatLabel="always"
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
             >
-              <mat-label>電話</mat-label>
+              <mat-label>聯絡電話</mat-label>
               <input
                 matInput
                 type="tel"
@@ -201,7 +266,7 @@
           </div>
         </ng-container>
 
-        <div class="row mt-4">
+        <div class="row mt-4" *ngIf="!(isSenior$ | async)">
           <mat-form-field
             floatLabel="always"
             class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
@@ -254,7 +319,11 @@
                     [value]="option"
                     *ngIf="count.value && option < count.value"
                   >
-                    {{ option }} 張 🍼
+                    {{ option }} 張
+                    <ng-container *ngIf="isSenior$ | async; else young">
+                      兒童座椅
+                    </ng-container>
+                    <ng-template #young> 🍼 </ng-template>
                   </mat-option>
                 </ng-container>
               </mat-select>
@@ -272,26 +341,64 @@
                 class="!text-center !text-xl"
               >
                 <ng-container *ngIf="count.value === 1">
-                  <mat-option [value]="0"> 我要吃肉 🍖 </mat-option>
-                  <mat-option [value]="1"> 我要吃素 🌱 </mat-option>
+                  <ng-container *ngIf="isSenior$ | async; else young">
+                    <mat-option [value]="0"> 葷食 </mat-option>
+                    <mat-option [value]="1"> 素食 </mat-option>
+                  </ng-container>
+                  <ng-template #young>
+                    <mat-option [value]="0"> 我要吃肉 🍖 </mat-option>
+                    <mat-option [value]="1"> 我要吃素 🌱 </mat-option>
+                  </ng-template>
                 </ng-container>
 
                 <ng-container *ngIf="count.value !== 1">
-                  <mat-option [value]="count.value">
-                    {{ count.value }} 位都吃肉 🍖
-                  </mat-option>
-                  <ng-container *ngFor="let option of options">
-                    <mat-option
-                      [value]="option"
-                      *ngIf="count.value && option < count.value"
-                    >
-                      {{ option }} 位吃素 🌱， {{ count.value - option }} 位吃肉
-                      🍖
+                  <!-- 全部葷食 -->
+                  <ng-container *ngIf="isSenior$ | async; else young">
+                    <mat-option [value]="count.value">
+                      {{ count.value }} 位葷食
                     </mat-option>
                   </ng-container>
-                  <mat-option [value]="count.value">
-                    {{ count.value }} 位都吃素 🌱
-                  </mat-option>
+                  <ng-template #young>
+                    <mat-option [value]="count.value">
+                      {{ count.value }} 位都吃肉 🍖
+                    </mat-option>
+                  </ng-template>
+
+                  <!-- 部分人 -->
+                  <ng-container *ngFor="let option of options">
+                    <ng-container *ngIf="isSenior$ | async; else young">
+                      <mat-option
+                        [value]="option"
+                        *ngIf="count.value && option < count.value"
+                      >
+                        {{ option }} 位素食 / {{ count.value - option }} 位葷食
+                      </mat-option>
+                    </ng-container>
+
+                    <ng-template #young>
+                      <mat-option
+                        [value]="option"
+                        *ngIf="count.value && option < count.value"
+                      >
+                        {{ option }} 位吃素 🌱，
+                        {{ count.value - option }} 位吃肉 🍖
+                      </mat-option>
+                    </ng-template>
+                  </ng-container>
+
+                  <!-- 全部素食 -->
+                  <ng-container *ngIf="count.value === 1">
+                    <ng-container *ngIf="isSenior$ | async; else young">
+                      <mat-option [value]="count.value">
+                        {{ count.value }} 位素食
+                      </mat-option>
+                    </ng-container>
+                    <ng-template #young>
+                      <mat-option [value]="count.value">
+                        {{ count.value }} 位都吃素 🌱
+                      </mat-option>
+                    </ng-template>
+                  </ng-container>
                 </ng-container>
               </mat-select>
             </mat-form-field>
@@ -307,17 +414,25 @@
                 class="!text-center !text-xl"
                 formControlName="letter"
               >
-                <mat-option [value]="false">
-                  不需要，節能減碳愛地球 🌏
-                </mat-option>
-                <mat-option [value]="true">
-                  我要，實體喜帖才有溫度、味道 👃
-                </mat-option>
+                <!-- 全部素食 -->
+                <ng-container *ngIf="isSenior$ | async; else young">
+                  <mat-option [value]="false"> 不需要喜帖 </mat-option>
+                  <mat-option [value]="true"> 需要喜帖 </mat-option>
+                </ng-container>
+
+                <ng-template #young>
+                  <mat-option [value]="false">
+                    不需要，節能減碳愛地球 🌏
+                  </mat-option>
+                  <mat-option [value]="true">
+                    我要，實體喜帖才有溫度、味道 👃
+                  </mat-option>
+                </ng-template>
               </mat-select>
             </mat-form-field>
           </div>
 
-          <div *ngIf="letter.value" class="row overflow-hidden mt-4">
+          <div *ngIf="letter.value" class="row mt-4">
             <mat-form-field
               class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-0"
               floatLabel="always"
@@ -334,7 +449,7 @@
           </div>
         </ng-container>
 
-        <div class="row mt-4">
+        <div class="row mt-4" *ngIf="!(isSenior$ | async)">
           <mat-form-field
             floatLabel="always"
             class="w-full bg-white/95 shadow rounded-lg px-2 pt-2 pb-2"
@@ -347,7 +462,7 @@
           </mat-form-field>
         </div>
 
-        <div class="row text-center overflow-hidden !my-8">
+        <div class="row text-center !my-8">
           <div class="w-full text-center !my-12">
             <div
               class="rounded-full ring-2 ring-offset-2 ring-red inline-block"

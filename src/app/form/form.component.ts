@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterContentInit, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Hashids from 'hashids/esm/hashids';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { fadeIn } from '../animation/fade-in';
 import { fadeInChild } from '../animation/fade-in-child';
 import { grow } from '../animation/grow';
@@ -48,9 +48,18 @@ export class FormComponent implements AfterContentInit {
     ceremony: this.ceremony,
   });
 
+  public isSenior$ = this._activatedRoute.queryParams.pipe(
+    map((params) => params['mode'] === 'senior')
+  );
+
+  public gender$ = this._activatedRoute.queryParams.pipe(
+    map((params) => ((params['gender'] ?? '') + '').toUpperCase())
+  );
+
   public constructor(
     private readonly _httpClient: HttpClient,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _activatedRoute: ActivatedRoute
   ) {}
 
   public ngAfterContentInit(): void {
@@ -60,6 +69,18 @@ export class FormComponent implements AfterContentInit {
 
     this.attend.valueChanges.subscribe((attend) => {
       if (!attend) this.ceremony.setValue(false);
+    });
+
+    this.gender$.subscribe((gender) => {
+      switch (gender) {
+        case 'male':
+          this.gender.setValue('MALE');
+          break;
+
+        case 'female':
+          this.gender.setValue('FEMALE');
+          break;
+      }
     });
 
     this.letter.valueChanges.subscribe((letter) => {

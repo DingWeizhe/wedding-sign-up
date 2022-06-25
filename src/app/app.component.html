@@ -1,14 +1,14 @@
 <div
   #bg
-  class="relative transition-all min-w-min sm:bg-[url(./assets/fishnets-and-hearts.webp)] flex flex-row justify-center items-start xs-h:items-center bg-gray-50 p-0 sm:p-2 overflow-auto"
+  class="relative transition-all min-w-min sm:bg-[url(./assets/fishnets-and-hearts.webp)] flex flex-row justify-center items-start xs-h:items-center bg-gray-50 p-0 sm:p-2 overflow-auto min-h-screen"
 >
   <div
     #container
-    class="relative transition-all sm:bg-[url(./assets/bg.png)] bg-red p-[10px] sm:p-6 sm:rounded-lg shadow-xl ring-0 sm:ring-1 ring-offset-0 sm:ring-offset-2 ring-red/30 w-full max-w-[470px] min-w-[350px] sm:max-h-[700px] min-h-[600px]"
+    class="relative transition-all sm:bg-[url(./assets/bg.png)] bg-red p-[10px] sm:p-6 sm:rounded-lg sm:shadow-xl ring-0 sm:ring-1 ring-offset-0 sm:ring-offset-2 ring-red/30 w-full max-w-[470px] min-w-[350px] sm:max-h-[760px] min-h-[600px]"
   >
     <div
       #inner
-      class="relative overflow-hidden bg-[url(./assets/white_wall_hash.webp)] rounded-lg shadow-xl w-full h-full max-w-[470px] max-h-full min-h-[580px]"
+      class="relative bg-[url(./assets/white_wall_hash.webp)] rounded-lg sm:shadow-xl w-full h-full max-w-[470px] sm:min-h-[700px] min-h-[600px] sm:max-h-[700px] sm:overflow-y-auto overflow-y-hidden overflow-x-hidden"
     >
       <router-outlet></router-outlet>
     </div>

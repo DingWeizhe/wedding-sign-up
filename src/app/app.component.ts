@@ -1,35 +1,8 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  ViewChild,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit {
-  @ViewChild('container')
-  public container!: ElementRef<HTMLElement>;
-
-  @ViewChild('bg')
-  public bg!: ElementRef<HTMLElement>;
-
-  @ViewChild('inner')
-  public inner!: ElementRef<HTMLElement>;
-
-  public ngAfterViewInit(): void {
-    this.onWindowsResize();
-  }
-
-  @HostListener('window:resize')
-  public onWindowsResize() {
-    let height = window.visualViewport?.height ?? window.innerHeight;
-    this.bg.nativeElement.style.height = height + 'px';
-    this.container.nativeElement.style.height = height + 'px';
-    this.inner.nativeElement.style.height = height - 20 + 'px';
-  }
-}
+export class AppComponent {}

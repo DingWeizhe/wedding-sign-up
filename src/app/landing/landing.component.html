@@ -112,14 +112,25 @@
   <div>
     <div
       [@grow]="status"
-      class="text-center mt-12 text-xl px-4 py-2 text-red text-shadow-light bg-white/60 inline-block rounded-lg"
+      class="text-center mt-12 text-xl px-4 py-2 text-red font-bold text-shadow-light bg-white/50 inline-block rounded-lg"
     >
       丁偉哲 ♥ 鄭禹辰
+      <div class="mt-4">
+        <div class="inline-block mr-8">
+          <div class="text-sm opacity-80">男方家長</div>
+          丁瑞賓<br />
+          林素芬
+        </div>
+        <div class="inline-block">
+          <div class="text-sm opacity-80">女方家長</div>
+          鄭家君<br />藍玉評
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="absolute top-[46%] w-full left-0 translate-y-[-50%]">
+<div class="absolute top-[55%] xs-h:top-[50%] w-full left-0 translate-y-[-50%]">
   <div class="flex-row space-x-12 text-center">
     <!-- <div
       [@grow]="status"
@@ -132,17 +143,17 @@
       </div>
     </div> -->
 
-    <div class="relative inline-block pt-0">
+    <div class="relative inline-block pt-[28px]">
       <div
         [@grow]="status"
-        class="text-red text-9xl text-centeralign-top text-shadow-light"
+        class="text-red text-[120px] leading-none xs-h:text-9xl text-centeralign-top text-shadow-light"
       >
         囍
       </div>
 
       <div
         [@grow]="status"
-        class="relative inline-block mt-12 ring-2 ring-offset-1 ring-red/90 p-1 px-4 rounded-xl text-white bg-red tracking-widest"
+        class="relative inline-block mt-2 xs-h:mt-12 ring-2 ring-offset-1 ring-red/90 p-1 px-4 rounded-xl text-white bg-red tracking-widest"
       >
         9 月 24 日 晚宴
       </div>
@@ -168,7 +179,7 @@
   >
     <button
       (click)="form()"
-      class="!rounded-full !text-3xl !p-4 !px-8 shadow transition-all text-white bg-red sm:p-1 sm:px-4 cursor-pointer"
+      class="!rounded-full !text-2xl !py-2 !px-8 xs-h:text-3xl xs-h:!py-4 shadow transition-all text-white bg-red sm:p-1 sm:px-4 cursor-pointer"
       mat-raised-button
       color="primary"
     >
