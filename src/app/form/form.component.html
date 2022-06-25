@@ -1,48 +1,61 @@
-<div class="flex-col h-full p-2 sm:p-6">
-  <img
-    width="139px"
-    [@grow]="{ value: status, params: { rotate: 5, delay: 0.1, opacity: 0.5 } }"
-    style="right: -20px; top: -60px; transform-origin: -100px 300px"
-    class="absolute transition-all"
-    src="./assets/plant-5.png"
-  />
+<div>
+  <div class="absolute left-0 top-0 w-full h-full overflow-hidden">
+    <img
+      width="139px"
+      [@grow]="{
+        value: status,
+        params: { rotate: 5, delay: 0.1, opacity: 0.5 }
+      }"
+      style="right: -20px; top: -60px; transform-origin: -100px 300px"
+      class="absolute transition-all"
+      src="./assets/plant-5.png"
+    />
 
-  <img
-    width="138px"
-    [@grow]="{
-      value: status,
-      params: { rotate: -5, delay: 0, opacity: 0.5 }
-    }"
-    style="left: -20px; top: 5%; transform-origin: -100px 300px"
-    class="absolute transition-all"
-    src="./assets/plant-3.png"
-  />
+    <img
+      width="138px"
+      [@grow]="{
+        value: status,
+        params: { rotate: -5, delay: 0, opacity: 0.5 }
+      }"
+      style="left: -20px; top: 5%; transform-origin: -100px 300px"
+      class="absolute transition-all"
+      src="./assets/plant-3.png"
+    />
 
-  <img
-    width="220px"
-    [@grow]="{ value: status, params: { rotate: 5, delay: 0.2, opacity: 0.5 } }"
-    style="right: -50px; top: 30%; transform-origin: -100px 300px"
-    class="absolute transition-all"
-    src="./assets/plant-2.png"
-    alt=""
-  />
+    <img
+      width="220px"
+      [@grow]="{
+        value: status,
+        params: { rotate: 5, delay: 0.2, opacity: 0.5 }
+      }"
+      style="right: -50px; top: 30%; transform-origin: -100px 300px"
+      class="absolute transition-all"
+      src="./assets/plant-2.png"
+      alt=""
+    />
 
-  <img
-    [@grow]="{ value: status, params: { rotate: -5, opacity: 0.5 } }"
-    style="transform-origin: -100px 300px"
-    class="absolute transition-all w-[140px] left-[-30px] bottom-[-100px] sm:w-[159px] sm:left-[-30px] sm:bottom-[-120px]"
-    src="./assets/plant-1.png"
-  />
+    <img
+      [@grow]="{ value: status, params: { rotate: -5, opacity: 0.5 } }"
+      style="transform-origin: -100px 300px"
+      class="absolute transition-all w-[140px] left-[-30px] bottom-[-100px] sm:w-[159px] sm:left-[-30px] sm:bottom-[-120px]"
+      src="./assets/plant-1.png"
+    />
 
-  <img
-    width="203px"
-    [@grow]="{ value: status, params: { rotate: 5, delay: 0.3, opacity: 0.5 } }"
-    style="right: -20px; bottom: 0px; transform-origin: -100px 300px"
-    class="absolute transition-all"
-    src="./assets/524.png"
-  />
+    <img
+      width="203px"
+      [@grow]="{
+        value: status,
+        params: { rotate: 5, delay: 0.3, opacity: 0.5 }
+      }"
+      style="right: -20px; bottom: 0px; transform-origin: -100px 300px"
+      class="absolute transition-all"
+      src="./assets/524.png"
+    />
+  </div>
 
-  <div>
+  <div
+    class="p-2 sm:absolute sm:left-0 sm:top-0 sm:flex-col sm:h-full sm:p-6 sm:overflow-auto"
+  >
     <img
       [@fadeIn]="status"
       src="./assets/cover.jpg"
