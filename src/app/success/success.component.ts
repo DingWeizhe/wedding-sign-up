@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import QRCodeStyling from 'qr-code-styling';
 import { map } from 'rxjs';
 
@@ -23,9 +23,16 @@ export class SuccessComponent implements AfterViewInit {
     })
   );
 
-  public constructor(private readonly _activatedRoute: ActivatedRoute) {}
+  public constructor(
+    private readonly _router: Router,
+    private readonly _activatedRoute: ActivatedRoute
+  ) {}
 
   public ngAfterViewInit(): void {
+    if (localStorage.getItem('arrived') === null) {
+      this._router.navigate(['landing'], { queryParamsHandling: 'merge' });
+    }
+
     this.url$.subscribe((url) => this.updateQrCode(url));
   }
 

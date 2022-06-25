@@ -63,7 +63,18 @@ export class FormComponent implements AfterContentInit {
   ) {}
 
   public ngAfterContentInit(): void {
+    if (localStorage.getItem('arrived') === null) {
+      this._router.navigate(['landing'], { queryParamsHandling: 'merge' });
+    }
+
+    const form = localStorage.getItem('form');
+    if (form) {
+      const formData = JSON.parse(form);
+      this.form.setValue(formData);
+    }
+
     this.form.valueChanges.subscribe((value) => {
+      localStorage.setItem('form', JSON.stringify(value));
       this.status++;
     });
 
