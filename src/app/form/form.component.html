@@ -367,12 +367,12 @@
                 <ng-container *ngIf="count.value !== 1">
                   <!-- 全部葷食 -->
                   <ng-container *ngIf="isSenior$ | async; else young">
-                    <mat-option [value]="count.value">
+                    <mat-option [value]="0">
                       {{ count.value }} 位葷食
                     </mat-option>
                   </ng-container>
                   <ng-template #young>
-                    <mat-option [value]="count.value">
+                    <mat-option [value]="0">
                       {{ count.value }} 位都吃肉 🍖
                     </mat-option>
                   </ng-template>
