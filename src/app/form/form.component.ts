@@ -44,6 +44,7 @@ export class FormComponent implements AfterContentInit {
     vegetarians: this.vegetarians,
     letter: this.letter,
     blessing: this.blessing,
+    address: this.address,
     wedding_cake: this.weddingCake,
     ceremony: this.ceremony,
   });
@@ -65,12 +66,6 @@ export class FormComponent implements AfterContentInit {
   public ngAfterContentInit(): void {
     if (localStorage.getItem('arrived') === null) {
       this._router.navigate(['landing'], { queryParamsHandling: 'merge' });
-    }
-
-    const form = localStorage.getItem('form');
-    if (form) {
-      const formData = JSON.parse(form);
-      this.form.setValue(formData);
     }
 
     this.form.valueChanges.subscribe((value) => {
@@ -101,6 +96,19 @@ export class FormComponent implements AfterContentInit {
         this.form.removeControl('address');
       }
     });
+
+    this.isSenior$.subscribe((isSenior) => {
+      console.log({ isSenior });
+      if (isSenior) {
+        this.letter.setValue(true);
+      }
+    });
+
+    const form = localStorage.getItem('form');
+    if (form) {
+      const formData = JSON.parse(form);
+      this.form.setValue(formData);
+    }
   }
 
   public async submit() {
