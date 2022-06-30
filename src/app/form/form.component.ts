@@ -88,7 +88,12 @@ export class FormComponent implements AfterContentInit {
       if (!attend) {
         this.ceremony.setValue(false);
       }
-      this.form.removeControl('address');
+
+      if (this.letter.value && !this.form.get('address')) {
+        this.form.addControl('address', this.address);
+      } else if (!this.letter.value && this.form.get('address')) {
+        this.form.removeControl('address');
+      }
     });
 
     this.gender$.subscribe((gender) => {
