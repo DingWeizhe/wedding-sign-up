@@ -71,7 +71,12 @@ export class FormComponent implements AfterContentInit {
     const form = localStorage.getItem('form');
     if (form) {
       const formData = JSON.parse(form);
-      this.form.setValue(formData);
+      for (let key in formData) {
+        const control = this.form.get(key);
+        const value = formData[key];
+        if (!control) return;
+        control.setValue(value);
+      }
     }
 
     this.form.valueChanges.subscribe((value) => {
@@ -80,7 +85,10 @@ export class FormComponent implements AfterContentInit {
     });
 
     this.attend.valueChanges.subscribe((attend) => {
-      if (!attend) this.ceremony.setValue(false);
+      if (!attend) {
+        this.ceremony.setValue(false);
+      }
+      this.form.removeControl('address');
     });
 
     this.gender$.subscribe((gender) => {
