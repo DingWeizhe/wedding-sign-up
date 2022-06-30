@@ -22,7 +22,7 @@ export class FormComponent implements AfterContentInit {
     Validators.required,
   ]);
   public attend = new FormControl(true, [Validators.required]);
-  public address = new FormControl('', [Validators.required]);
+  public address = new FormControl('');
   public count = new FormControl(1);
   public childSeat = new FormControl(0);
   public vegetarians = new FormControl(0);
