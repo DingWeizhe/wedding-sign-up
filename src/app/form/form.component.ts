@@ -26,7 +26,7 @@ export class FormComponent implements AfterContentInit {
   public count = new FormControl(1);
   public childSeat = new FormControl(0);
   public vegetarians = new FormControl(0);
-  public letter = new FormControl(false);
+  public letter = new FormControl(true);
   public blessing = new FormControl('', []);
   public weddingCake = new FormControl(true);
   public phone = new FormControl('');
@@ -68,6 +68,12 @@ export class FormComponent implements AfterContentInit {
       this._router.navigate(['landing'], { queryParamsHandling: 'merge' });
     }
 
+    const form = localStorage.getItem('form');
+    if (form) {
+      const formData = JSON.parse(form);
+      this.form.setValue(formData);
+    }
+
     this.form.valueChanges.subscribe((value) => {
       localStorage.setItem('form', JSON.stringify(value));
       this.status++;
@@ -79,12 +85,14 @@ export class FormComponent implements AfterContentInit {
 
     this.gender$.subscribe((gender) => {
       switch (gender) {
-        case 'male':
+        case 'MALE':
           this.gender.setValue('MALE');
+          this.gender.markAsDirty();
           break;
 
-        case 'female':
+        case 'FEMALE':
           this.gender.setValue('FEMALE');
+          this.gender.markAsDirty();
           break;
       }
     });
@@ -96,19 +104,6 @@ export class FormComponent implements AfterContentInit {
         this.form.removeControl('address');
       }
     });
-
-    this.isSenior$.subscribe((isSenior) => {
-      console.log({ isSenior });
-      if (isSenior) {
-        this.letter.setValue(true);
-      }
-    });
-
-    const form = localStorage.getItem('form');
-    if (form) {
-      const formData = JSON.parse(form);
-      this.form.setValue(formData);
-    }
   }
 
   public async submit() {
